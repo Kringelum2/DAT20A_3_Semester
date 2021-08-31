@@ -1,3 +1,7 @@
+package Intro;
+
+import java.util.ArrayList;
+
 public class Systemos {
 
     public static class out{
@@ -33,6 +37,18 @@ public class Systemos {
 
         public static void println(boolean b) {
             System.out.println(b);
+        }
+
+        public static void println(Object[] content) {
+        for (Object o : content) {
+            System.out.print(o + " ");
+        }
+        }
+
+        public static void println(ArrayList<Object> content) {
+            for(int i = 0; i < content.size(); i++) {
+                System.out.print(content.get(i) + " ");
+            }
         }
 
         public static void println(Object content) {

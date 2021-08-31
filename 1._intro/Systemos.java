@@ -2,6 +2,7 @@ public class Systemos {
 
     public static class out{
 
+        // Nogle primitive data typer der er 8 normalt
     public static void println(String s) {
         System.out.println(s);
     }
@@ -34,5 +35,10 @@ public class Systemos {
             System.out.println(b);
         }
 
+        public static void println(Word w) {
+            System.out.println(w);
+        }
+
     }
+
 }

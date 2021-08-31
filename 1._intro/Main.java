@@ -4,6 +4,7 @@ public class Main {
         Systemos.out.println("Spurgt");
         Systemos.out.println(5);
         Systemos.out.println(5.69);
+        Systemos.out.println(new Word("Flødebolle"));
     }
 
 }

@@ -1,0 +1,12 @@
+// String literal
+"Hello World"
+
+// WHAT IS THIS???
+() -> System.out.println("Hello World")
+Also cherished by the names of: lambda, Anonymous function,
+
+
+// Method
+public void greetings() {
+System.out.println("Hello World");
+}

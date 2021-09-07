@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Functions 2</title>
+</head>
+<body>
+
+<script>
+
+    // Create a function called greetings that prints out "Hello"
+
+const myFavoriteThings = ["Java", "Bitches", false];
+
+function printer(something) {
+    console.log(something);
+}
+
+// HoF = high order function for each, en function som tager en function som argument
+    // forEach er en fukntion og den tager mod printer som et argument (printer er også en function)
+// myFavoriteThings.forEach(printer);
+
+    //lambda
+// myFavoriteThings.forEach(element => printer(element));
+
+    // one-liner
+    // myFavoriteThings.forEach(element => printer(element));
+    // with a body (allows multiple statements)
+    //  (remember the return value if the two need to be identical)
+    // myFavoriteThings.forEach((element, index, list) => printer(element, index));
+
+    // man kan kalde element index og list hvad som helst.
+
+    myFavoriteThings.forEach((element, index, list) => console.log(element, index, list));
+
+// anatomy af en lambda
+    /*
+     * (someArgument) [I name them]
+     * =>             [denotes lambda syntax]
+     * [...]            [Function/lambda body]
+     */
+
+    // myFavoriteThings.forEach(element => {})
+
+</script>
+
+</body>
+</html>

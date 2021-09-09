@@ -21,7 +21,13 @@ public class Main {
         };
         System.out.println(stringComparator.compare("Hello", "World"));
 
-        Comparator<String> stringComparatorLambda = (String firstString, String secondString) -> firstString.compareTo(secondString); // Implementering i lambda form
-        System.out.println(stringComparatorLambda.compare("a","b"));
+        Comparator<String> lambdaComparator = (String firstString, String secondString) -> firstString.compareTo(secondString); // Implementering i lambda form
+        System.out.println(lambdaComparator.compare("a","b"));
+
+
+        Concatenator concat = (prependorString, appendorString) -> prependorString + appendorString;
+
+        System.out.println(concat.cat("Mind", "Blown"));
+
     }
 }

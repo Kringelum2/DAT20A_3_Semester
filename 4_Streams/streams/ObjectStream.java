@@ -1,4 +1,4 @@
-package Streams;
+package streams;
 
 import java.util.Date;
 import java.util.stream.Stream;

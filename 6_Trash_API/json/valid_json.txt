@@ -1,0 +1,11 @@
+{
+    "key" : "ChristianErHeltSuget",
+    "stenSaksPapir" : "kæmpe noob",
+    "age" : 83,
+    "erSuget" : true
+    "lolMechanics" : {
+    "kiting" : false
+    "dårligTil" : "Peeling"
+    }
+
+}

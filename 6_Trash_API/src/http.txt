@@ -1,0 +1,18 @@
+// Http request
+Get /pokemon/1 HTTP/1.0
+[headers]
+
+[body]
+
+------------------------
+
+POST /pokemon HTTP/1.0
+
+
+
+HTTP methods:
+GET
+POST
+PUT
+PATCH
+DELETE

@@ -3,9 +3,12 @@ package dk.kea.controllers;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @RestController
 public class TrashController {
+
+    ArrayList<String> list = new ArrayList<>(){{add("Pride"); add("Sloth"); add("Greed"); add("Wrath"); add("Lust"); add("Envy"); add("Gluttony");}};
 
 
     @GetMapping ("/")
@@ -25,19 +28,24 @@ public class TrashController {
 
     @GetMapping("/sin/{number}")
     public String sevenDeadlySins(@PathVariable int number) {
-        switch (number) {
-            case 1: return "Death";
-            case 2: return "Sloth";
-            case 3: return "Gluttony";
-            case 4: return "Pride";
-            case 5: return "Lust";
-            case 6: return "Envy";
-            case 7: return "Greed";
-        }
-        return "";
-    }
-    
-    
 
+        try {
+            return list.get(number-1);
+        } catch(Exception e) {
+            return "No more sins";
+        }
+
+    }
+
+    @GetMapping ("/trash")
+    public String throwTrash(@RequestParam(defaultValue = "Christian") String trash) {
+        return trash;
+    }
+
+    @PostMapping("/rubbishbin")
+    public String throwOutRubbish(@RequestBody String  rubbish) {
+        System.out.println(rubbish);
+        return "everything went well";
+    }
 
 }

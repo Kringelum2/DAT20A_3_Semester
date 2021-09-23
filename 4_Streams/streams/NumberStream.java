@@ -44,6 +44,5 @@ public class NumberStream {
         System.out.println(summary.getAverage());
 
 
-
     }
 }

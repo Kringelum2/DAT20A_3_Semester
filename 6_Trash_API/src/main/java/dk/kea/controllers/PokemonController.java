@@ -10,7 +10,12 @@ import java.util.List;
 @RestController
 public class PokemonController {
 
-    private ArrayList<String> pokemonList = new ArrayList<>(){{ add("Charmander"); add("Mr.Sugesen AKA Christian");  add("Squirtle"); add("Bulbasaur");}};
+    private ArrayList<String> pokemonList = new ArrayList<>() {{
+        add("Charmander");
+        add("Mr.Sugesen AKA Christian");
+        add("Squirtle");
+        add("Bulbasaur");
+    }};
 
     @GetMapping("/pokemon/go")
     public boolean pokemonGo() {
@@ -19,7 +24,7 @@ public class PokemonController {
 
     @GetMapping("/pokemon")
     public ArrayList<String> pokemon() {
-         return pokemonList;
+        return pokemonList;
     }
 
 }

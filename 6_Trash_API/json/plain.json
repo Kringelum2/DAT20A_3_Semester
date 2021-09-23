@@ -4,13 +4,18 @@
   "isbetterThanBoeing": true,
   "productLineSelection": 69,
   "pilots": [
-    { "name":  "Bob"},
-    { "name":  "Rabia"},
-    { "name":  "Wright brothers", "certificateLevel":  5}
+    {
+      "name": "Bob"
+    },
+    {
+      "name": "Rabia"
+    },
+    {
+      "name": "Wright brothers",
+      "certificateLevel": 5
+    }
   ],
   "CEO": {
-"name": "Guillaume Faury"
+    "name": "Guillaume Faury"
   }
-
-
 }

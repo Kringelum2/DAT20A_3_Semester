@@ -7,7 +7,6 @@
 <body>
 
 
-
 <script>
 
     // we have proof that functions are first class citizens in javascript
@@ -24,17 +23,17 @@
         return greetingsAnonymousFunction();
     }
 
-        const greetingFunctionToBePassed = function () {
-            console.log("Hello");
-        }
+    const greetingFunctionToBePassed = function () {
+        console.log("Hello");
+    }
 
-        function whoToGreet(anyFunctionAsAParameter) {
+    function whoToGreet(anyFunctionAsAParameter) {
         anyFunctionAsAParameter();
-            console.log("world");
-        }
+        console.log("world");
+    }
 
 
-        whoToGreet(greetingFunctionToBePassed);
+    whoToGreet(greetingFunctionToBePassed);
 
     // greetingsAnonymousFunction();
 

@@ -14,7 +14,7 @@ public class Octopus extends Animal implements Movement {
                 System.out.println("Otto is a horny beast");
             }
             try {
-               Thread.sleep(1000);
+                Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }

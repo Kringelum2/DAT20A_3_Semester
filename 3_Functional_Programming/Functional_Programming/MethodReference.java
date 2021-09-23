@@ -9,7 +9,7 @@ public class MethodReference {
         System.out.println(content);
     }
 
-   public static void outStaticVersion(String content) {
+    public static void outStaticVersion(String content) {
         System.out.println(content);
     }
 

@@ -8,10 +8,18 @@ import java.util.ArrayList;
 @RestController
 public class TrashController {
 
-    ArrayList<String> list = new ArrayList<>(){{add("Pride"); add("Sloth"); add("Greed"); add("Wrath"); add("Lust"); add("Envy"); add("Gluttony");}};
+    ArrayList<String> list = new ArrayList<>() {{
+        add("Pride");
+        add("Sloth");
+        add("Greed");
+        add("Wrath");
+        add("Lust");
+        add("Envy");
+        add("Gluttony");
+    }};
 
 
-    @GetMapping ("/")
+    @GetMapping("/")
     public String message() {
         return "Hello World";
     }
@@ -21,7 +29,7 @@ public class TrashController {
         return LocalDateTime.now().toString();
     }
 
-    @RequestMapping(value="/endppoint", method = RequestMethod.GET)
+    @RequestMapping(value = "/endppoint", method = RequestMethod.GET)
     public String requestMappingTypeEndpoint() {
         return "Endppoint with Request mapping annotation";
     }
@@ -30,20 +38,20 @@ public class TrashController {
     public String sevenDeadlySins(@PathVariable int number) {
 
         try {
-            return list.get(number-1);
-        } catch(Exception e) {
+            return list.get(number - 1);
+        } catch (Exception e) {
             return "No more sins";
         }
 
     }
 
-    @GetMapping ("/trash")
+    @GetMapping("/trash")
     public String throwTrash(@RequestParam(defaultValue = "Christian") String trash) {
         return trash;
     }
 
     @PostMapping("/rubbishbin")
-    public String throwOutRubbish(@RequestBody String  rubbish) {
+    public String throwOutRubbish(@RequestBody String rubbish) {
         System.out.println(rubbish);
         return "everything went well";
     }

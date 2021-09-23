@@ -8,8 +8,6 @@ public class GameOfOctopus extends Thread {
         otto.makeDoActivity();
 
 
-
-
     }
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MarioController {
 
-    @GetMapping ("/supermario/character")
+    @GetMapping("/supermario/character")
     public Character character() {
         return new Character("Toad");
     }

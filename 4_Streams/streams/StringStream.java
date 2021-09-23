@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class StringStream {
 
     public static void main(String[] args) {
-        List<String> coolWords = Arrays.asList("Swag", "Soft-Ice", "Swag","Swag", "", "Jan", "");
+        List<String> coolWords = Arrays.asList("Swag", "Soft-Ice", "Swag", "Swag", "", "Jan", "");
 
         List<String> onlyWords = coolWords.stream().filter(word -> !word.isEmpty()).collect(Collectors.toList());
         // System.out.println(onlyWords);
@@ -18,7 +18,6 @@ public class StringStream {
         // for at lave mellemrum i printen:
         String sentence = coolWords.parallelStream().filter(word -> !(word.equals(""))).collect(Collectors.joining(" ")) + ".";
         // System.out.println(sentence);
-
 
 
     }

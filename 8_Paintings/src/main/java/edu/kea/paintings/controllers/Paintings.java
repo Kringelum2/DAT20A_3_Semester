@@ -1,60 +1,86 @@
 package edu.kea.paintings.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.kea.paintings.DTO.ArtistDTO;
+import edu.kea.paintings.models.Artist;
 import edu.kea.paintings.models.Painting;
+import edu.kea.paintings.repository.ArtistRepository;
+import edu.kea.paintings.repository.PaintingRepository;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class Paintings {
 
-    private ArrayList<Painting> paintings = new ArrayList<>();
+    @Autowired
+    PaintingRepository paintings;
+
+    @Autowired
+    ArtistRepository artists;
+
 
     @GetMapping("/paintings")
-    public ArrayList<Painting> getPaintings() {
-        return paintings;
+    public Iterable<Painting> getPaintings() {
+        return paintings.findAll();
     }
 
     @GetMapping("/paintings/{id}")
-    public Painting getPaintingById(@PathVariable int id) {
-        return paintings.get(id);
+    public Painting getPaintingById(@PathVariable Long id) {
+        return paintings.findById(id).get();
     }
 
     @PostMapping("/paintings")
-    public Painting addPainting(@RequestBody Painting painting) {
-        paintings.add(painting);
-        return painting;
+    public Painting addPainting(@RequestBody String body) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        Painting paintingToCreate = mapper.readValue(body, Painting.class);
+
+        Iterable<Long> artistsIds = mapper.readValue(body, ArtistDTO.class).artistsIds;
+
+        List<Artist> foundArtists = artists.findAllById(artistsIds);
+
+        paintingToCreate.setArtists(foundArtists);
+
+        return paintings.save(paintingToCreate);
+        // painting.setId(null);
     }
 
     @PutMapping("/paintings/{id}")
-    public Painting updatePainting(@PathVariable int id, @RequestBody Painting newPainting) {
-        paintings.set(id, newPainting);
-        return newPainting;
-    }
-
-    @PatchMapping("/paintings/{id}")
-    public Painting patchPainting(@PathVariable int id, @RequestBody String body) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            Painting newPainting = mapper.readValue(body, Painting.class);
-            paintings.set(id, newPainting);
-            return newPainting;
-        } catch (JsonProcessingException error) {
-            System.out.println(error);
-            Painting unknownPainting = new Painting("Unknown artist");
-            paintings.set(id, unknownPainting);
-            return unknownPainting;
+    public String updatePainting(@PathVariable Long id, @RequestBody Painting painting) {
+        if (paintings.existsById(id)) {
+            painting.setId(id);
+            paintings.save(painting);
+            return "Painting was created";
+        } else {
+            return "Painting not found";
         }
     }
 
+    @PatchMapping("/paintings/{id}")
+    public String patchPainting(@PathVariable Long id, @RequestBody Painting painting) {
+        return paintings.findById(id).map(foundPainting -> {
+            if (painting.getArtist() != null) foundPainting.setArtist(painting.getArtist());
+            if (painting.getPrices() != 0) foundPainting.setPrices(painting.getPrices());
+            if (painting.getTitle() != null) foundPainting.setTitle(painting.getTitle());
+            if (painting.getGenre() != null) foundPainting.setGenre(painting.getGenre());
+            if (painting.getYear() != 0) foundPainting.setYear(painting.getYear());
+
+            paintings.save(foundPainting);
+            return "Painting updated";
+        }).orElse("Painting not found");
+    }
 
     @DeleteMapping("/paintings/{id}")
-    public Painting deletePaintingById(@PathVariable int id){
-        return paintings.remove(id);
+    public void deletePainting(@PathVariable Long id) {
+        paintings.deleteById(id);
     }
 
 }

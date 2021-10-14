@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class Artists {
 
-
     @Autowired
     ArtistRepository artists;
 
@@ -17,36 +16,47 @@ public class Artists {
         return artists.findAll();
     }
 
-    //Getting a artist by id
     @GetMapping("/artists/{id}")
-    public Artist getArtistById(@PathVariable Long id) {
+    public Artist getArtist(@PathVariable Long id) {
         return artists.findById(id).get();
     }
 
-    //Add's an artist using post
     @PostMapping("/artists")
     public Artist addArtist(@RequestBody Artist newArtist) {
+        // don't allow the client to overwrite the id
         newArtist.setId(null);
         return artists.save(newArtist);
     }
-    //Updates a artists by id
+
     @PutMapping("/artists/{id}")
-    public String updateArtistById(@PathVariable Long id, @RequestBody Artist artistToUpdateWith){
+    public String updateArtistById(@PathVariable Long id, @RequestBody Artist artistToUpdateWith) {
+        if (artists.existsById(id)) {
+            artistToUpdateWith.setId(id);
+            artists.save(artistToUpdateWith);
+            return "Artist was created";
+        } else {
+            return "Artist not found";
+        }
+    }
+
+
+    @PatchMapping("/artists/{id}")
+    public String patchArtistById(@PathVariable Long id, @RequestBody Artist artistToUpdateWith) {
         return artists.findById(id).map(foundArtist -> {
-            foundArtist.setName(artistToUpdateWith.getName());
-            foundArtist.setAge(artistToUpdateWith.getAge());
-            foundArtist.setNationality(artistToUpdateWith.getNationality());
-            foundArtist.setPrimaryStyle(artistToUpdateWith.getPrimaryStyle());
-            foundArtist.setBirthDate(artistToUpdateWith.getBirthDate());
-            foundArtist.setGender(artistToUpdateWith.getGender());
+            if (artistToUpdateWith.getName() != null) foundArtist.setName(artistToUpdateWith.getName());
+            if (artistToUpdateWith.getAge() != 0) foundArtist.setAge(artistToUpdateWith.getAge());
+            if (artistToUpdateWith.getNationality() != null) foundArtist.setNationality(artistToUpdateWith.getNationality());
+            if (artistToUpdateWith.getPrimaryStyle() != null) foundArtist.setPrimaryStyle(artistToUpdateWith.getPrimaryStyle());
+            if (artistToUpdateWith.getBirthDate() != null) foundArtist.setBirthDate(artistToUpdateWith.getBirthDate());
+            if (artistToUpdateWith.getGender() != null) foundArtist.setGender(artistToUpdateWith.getGender());
+
+            artists.save(foundArtist);
             return "Artist updated";
         }).orElse("Artist not found");
     }
-    //Delete an artists by id.
+
     @DeleteMapping("/artists/{id}")
-    public void deleteArtistById(@PathVariable Long id){
+    public void deleteArtistById(@PathVariable Long id) {
         artists.deleteById(id);
     }
-
-
 }

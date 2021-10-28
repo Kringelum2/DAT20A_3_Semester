@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .list-wrapper {
+            display: flex;
+            justify-content: space-around;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .reaction-btn {
+            width: 100px;
+            height: 50px;
+        }
+
+        .website-header {
+            text-align: center;
+        }
+
+        #list-horny {
+           color: blue;
+        }
+        #list-laugh {
+            color: orange;
+        }
+        #list-wtf {
+            color: red;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Kanye</title>
+</head>
+<body>
+
+<h1 class="website-header">Great quotes by the man</h1>
+
+<div class="wrapper">
+    <button id="btn-laugh" class="reaction-btn">Funny</button>
+    <button id="btn-wtf" class="reaction-btn">WTF</button>
+    <button id="btn-horny" class="reaction-btn">Horny</button>
+</div>
+
+<h2 id="kanye-quote" class="website-header"></h2>
+
+<div class="list-wrapper">
+    <div id="list-laugh" class="list"></div>
+    <div id="list-wtf" class="list"></div>
+    <div id="list-horny" class="list"></div>
+</div>
+
+<script src="./Kanye.js"></script>
+
+</body>
+</html>

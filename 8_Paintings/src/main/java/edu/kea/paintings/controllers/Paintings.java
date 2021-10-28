@@ -45,7 +45,7 @@ public class Paintings {
 
         Iterable<Long> artistsIds = mapper.readValue(body, ArtistDTO.class).artistsIds;
 
-        List<Artist> foundArtists = artists.findAllById(artistsIds);
+        List<Artist> foundArtists = (List<Artist>)artists.findAllById(artistsIds);
 
         paintingToCreate.setArtists(foundArtists);
 

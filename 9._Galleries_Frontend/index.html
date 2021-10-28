@@ -8,8 +8,11 @@
 
 <h3>Welcome to galleries</h3>
 
+<h3>Most recent artist</h3>
+<div id="featured-artist"></div>
+
 <script>
-    fetch("http://localhost:8080/artists/8")
+    fetch("http://localhost:8080/artists/1")
     .then(response => response.json())
     .then(artists =>{
         document.getElementById("featured-artist").innerText = artists[artists.length-1].name

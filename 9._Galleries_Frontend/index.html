@@ -5,19 +5,26 @@
     <title>Galleries</title>
 </head>
 <body>
-
 <h3>Welcome to galleries</h3>
 
-<h3>Most recent artist</h3>
-<div id="featured-artist"></div>
+<div id="featured-artists"></div>
 
 <script>
-    fetch("http://localhost:8080/artists/1")
-    .then(response => response.json())
-    .then(artists =>{
-        document.getElementById("featured-artist").innerText = artists[artists.length-1].name
-    });
-</script>
 
+    function escapeHTML(string) {
+        string = string.replace("&", "&amp;");
+        string = string.replace(">", "&gt;");
+        string = string.replace("<", "&lt;");
+        string = string.replace('"', "&quot;");
+        string = string.replace("'", "&#039;");
+        return string;
+    }
+
+    fetch("http://localhost:8080/artists")
+        .then(response => response.json())
+        .then(artists => {
+            artists.map(artist => document.getElementById("featured-artists").append(artist.name + artist.age));
+        });
+</script>
 </body>
 </html>

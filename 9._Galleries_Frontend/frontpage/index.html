@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Galleries</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="./frontpage.css">
+    <script src="../lib/HTMLEscape.js"></script>
 </head>
 <body>
 <h3>Welcome to galleries</h3>
 
-<a href="../artists/artists.html"></a>
+<nav>
+    <a href="../frontpage/index.html"><img class="logo" src="./bobross.jpg" alt="logo"></a>
+    <a href="../artists/artists.html">
+        <h3>Artist</h3>
+    </a>
+    <a href="../galleries/galleries.html">
+        <h3>Galleries</h3>
+    </a>
+    <a href="../paintings/paintings.html">
+        <h3>paintings</h3>
+    </a>
+</nav>
+
 
 <div id="featured-artists"></div>
+<script src="../artists/artists.js"></script>
 
 <script>
 
-    function escapeHTML(string) {
-        string = string.replace("&", "&amp;");
-        string = string.replace(">", "&gt;");
-        string = string.replace("<", "&lt;");
-        string = string.replace('"', "&quot;");
-        string = string.replace("'", "&#039;");
-        return string;
-    }
 
-    fetch("http://localhost:8080/artists")
-        .then(response => response.json())
-        .then(artists => {
-            artists.map(artist => document.getElementById("featured-artists").append(artist.name + artist.age));
-        });
 </script>
+
+
 </body>
 </html>

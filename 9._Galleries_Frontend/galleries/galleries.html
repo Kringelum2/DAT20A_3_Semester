@@ -2,29 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Galleries</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="./galleries.css">
+    <link rel="stylesheet" href="./galleries.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../global.js"></script>
     <script src="../lib/HTMLEscape.js"></script>
+    <title>Galleries</title>
 </head>
 <body>
-
 <nav>
-    <a href="../frontpage/index.html"><img class="logo" src="../frontpage/bobross.jpg" alt="logo"></a>
-
     <a href="../frontpage/index.html">
-        <h3>Frontpage</h3>
-    </a>
-    <a href="../artists/artists.html">
-        <h3>Artist</h3>
-    </a>
-    <a href="../paintings/paintings.html">
-        <h3>paintings</h3>
-    </a>
-</nav>
+            <a href="../frontpage/index.html"><img class="logo" src="../frontpage/bobross.jpg" alt="logo"></a>
 
-<div id="featured-artists"></div>
-<script src="../artists/artists.js"></script>
+        <a href="../artists/artists.html">Artists</a>
+        <a href="../paintings/paintings.html">Paintings</a>
+        <a href="../galleries/galleries.html">Galleries</a>
+    </a>
+        </nav>
 
+<table id="galleries-wrapper">
+    <thead>
+    <th>Name</th>
+    <th>Owner</th>
+    <th>Location</th>
+    <th>SquareFeet</th>
+    <th>Delete</th>
+    </thead>
+
+    <tbody id="gallery-body">
+    </tbody>
+</table>
+
+<script src="./galleries.js"></script>
 </body>
 </html>

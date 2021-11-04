@@ -32,12 +32,12 @@ fetch("http://localhost:8080/artists", {
     },
     body: JSON.stringify(newArtist)
 })
-    .then(response.status === 200) {
-    createArtistCard(newArtist)
-    } else
-    {
-        console.log("Artist not created.", response.status);
-    }
+    .then(response => {
+        if (response.status === 200) {
+            createArtistCard(newArtist);
+        } else {
+            console.log("Artist not created.", response.status);
+        }
     })
     .catch(error => console.log("Network related error", error));
 
